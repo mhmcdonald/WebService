@@ -3,10 +3,13 @@ package edu.uchicago.mhmcdonald.service;
 import edu.uchicago.mhmcdonald.domain.Episode;
 import edu.uchicago.mhmcdonald.repository.EpisodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 /**
  * Created by markmcdonald on 8/17/16.
  */
+@Service
 public class EpisodeServiceImpl implements EpisodeService {
 
     private EpisodeRepository episodeRepository;
@@ -25,10 +28,10 @@ public class EpisodeServiceImpl implements EpisodeService {
     public Episode create(Episode episode) {
         return episodeRepository.save(episode);
     }
-//not sure about this one!
+
     @Override
-    public Episode read(Episode episode) {
-        return episodeRepository.findOne(episode.getId());
+    public Episode read(long id) {
+        return episodeRepository.findOne(id);
     }
 
     @Override

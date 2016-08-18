@@ -2,6 +2,7 @@ package edu.uchicago.mhmcdonald.service;
 
 import edu.uchicago.mhmcdonald.domain.Episode;
 
+
 import java.util.Iterator;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Iterator;
 public interface EpisodeService {
     Iterable<Episode> list();
     Episode create(Episode episode);
-    Episode read(Episode episode);
+    Episode read(long id);
     Episode update(long id, Episode episode);
     void delete(long id);
 }

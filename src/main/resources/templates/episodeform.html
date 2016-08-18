@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
 
     <title>Bourdain FC</title>
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
@@ -133,57 +133,59 @@
 
 </head>
 <body>
+
 <div class="container" th:replace="fragments/header :: header">
     <p>header</p>
 </div>
+
 <div class="jumbotron" th:replace="fragments/jumbotron :: jumbotron">
     <!--<div class="container">-->
-        <!--<h1>Bourdain?</h1>-->
-        <!--&lt;!&ndash;<p class="lead" th:text="#{index.courses.tagline}">Tag line</p>&ndash;&gt;-->
+    <!--<h1>Bourdain?</h1>-->
+    <!--&lt;!&ndash;<p class="lead" th:text="#{index.courses.tagline}">Tag line</p>&ndash;&gt;-->
     <!--</div>-->
 </div>
 
-<div class="container" sec:authorize="hasRole('ROLE_USER')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-            </tr>
-        </table>
 
-    </div>
-</div>
+<div class="container">
 
-<div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-                <th>Edit</th>
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-                <td><a th:href="${'/episode/edit/' + episode.id}">Edit</a></td>
-            </tr>
-        </table>
-
+    <h2>New Episode Details</h2>
+    <div>
+        <form class="form-horizontal" th:object="${episode}" th:action="@{/episode}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Season:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{season}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Episode Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{episodeNum}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Episode Location:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{episodeName}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{episodeDesc}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image Url:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{imgurl}"/>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="col-sm-3 btn btn-default">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
 

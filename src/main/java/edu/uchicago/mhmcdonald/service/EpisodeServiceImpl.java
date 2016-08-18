@@ -30,6 +30,16 @@ public class EpisodeServiceImpl implements EpisodeService {
     }
 
     @Override
+    public Episode saveEpisode(Episode episode){
+        return episodeRepository.save(episode);
+    }
+
+    @Override
+    public Episode getEpisodeById(Long id){
+        return episodeRepository.findOne(id);
+    }
+
+    @Override
     public Episode read(long id) {
         return episodeRepository.findOne(id);
     }

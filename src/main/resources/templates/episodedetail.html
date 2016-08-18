@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
 
     <title>Bourdain FC</title>
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
@@ -138,52 +138,55 @@
 </div>
 <div class="jumbotron" th:replace="fragments/jumbotron :: jumbotron">
     <!--<div class="container">-->
-        <!--<h1>Bourdain?</h1>-->
-        <!--&lt;!&ndash;<p class="lead" th:text="#{index.courses.tagline}">Tag line</p>&ndash;&gt;-->
+    <!--<h1>Bourdain?</h1>-->
+    <!--&lt;!&ndash;<p class="lead" th:text="#{index.courses.tagline}">Tag line</p>&ndash;&gt;-->
     <!--</div>-->
 </div>
 
-<div class="container" sec:authorize="hasRole('ROLE_USER')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-            </tr>
-        </table>
 
-    </div>
-</div>
+<div class="container">
+    <h2>Episode Details</h2>
+    <div>
+        <form class="form-horizontal">
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-2 control-label">Episode Season:</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<p class="form-control-static" th:text="${episode.season.toString()}">Product Id</p></div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Location:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${episode.episodeName}">episodeName</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${episode.episodeDesc}">description</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Episode Number:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${episode.episodeNum}">Priceaddd</p>
+                </div>
+            </div>
 
-<div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-                <th>Edit</th>
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-                <td><a th:href="${'/episode/edit/' + episode.id}">Edit</a></td>
-            </tr>
-        </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="http://static-api.guidebox.com/new_thumbs/thumbnails_episodes/15696-8-2-1384070400-9384480598-large-400x225.jpg"
+                         th:src="${episode.imgurl}"
+                         class="center-block"/>
+                </div>
+            </div>
 
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-2 control-label">Image Url:</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<p class="form-control-static" th:text="${episode.imgurl}">url....</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        </form>
     </div>
 </div>
 

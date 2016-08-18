@@ -66,16 +66,43 @@ public class EpisodeController {
         return "episodelist";
 //        return "index";
     }
+//im not sure how to do this using Gerber's format:
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Episode create(@RequestBody Episode episode){
-        return episodeService.create(episode);
+    @RequestMapping("episode/new")
+    public String newEpisode(Model model){
+        model.addAttribute("episode", new Episode());
+        return "episodeform";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Episode read(@PathVariable(value = "id") long id){
-        Episode post = episodeService.read(id);
-        return post;
+//    @RequestMapping(value = "/", method = RequestMethod.POST)
+//    public Episode create(@RequestBody Episode episode){
+//        return episodeService.create(episode);
+//    }
+
+    @RequestMapping(value = "episode", method = RequestMethod.POST)
+    public String saveEpisode(Episode episode){
+
+        episodeService.saveEpisode(episode);
+
+        return "redirect:/episode/" + episode.getId();
+    }
+
+//    @RequestMapping(value = "episode/{id}", method = RequestMethod.GET)
+//    public Episode read(@PathVariable(value = "id") long id){
+//        Episode post = episodeService.read(id);
+//        return post;
+//    }
+
+    @RequestMapping("episode/{id}")
+    public String showEpisode(@PathVariable Long id, Model model){
+        model.addAttribute("episode", episodeService.getEpisodeById(id));
+        return "episodedetail";
+    }
+
+    @RequestMapping("episode/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        model.addAttribute("episode", episodeService.getEpisodeById(id));
+        return "episodeform";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

@@ -14,4 +14,7 @@ public interface EpisodeService {
     Episode read(long id);
     Episode update(long id, Episode episode);
     void delete(long id);
+
+    Episode getEpisodeById(Long id);
+    Episode saveEpisode(Episode episode);
 }

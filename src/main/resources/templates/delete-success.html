@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
 
-    <title>Bourdain FC</title>
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
           th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
 
@@ -11,11 +12,9 @@
 
     <link th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
 
-
     <style th:remove="all">
         .jumbotron {
-        .jumbotron {
-            background: url('../static/images/bourdain.jpg') no-repeat center center;
+            background: url('../static/images/SpringCoreJumbotron.jpg') no-repeat center center;
             height: 350px;
             color: white;
             text-shadow: #444 0 1px 1px;
@@ -133,66 +132,12 @@
 
 </head>
 <body>
-<div class="container" th:replace="fragments/header :: header">
-    <p>header</p>
-</div>
-<div class="jumbotron" th:replace="fragments/jumbotron :: jumbotron">
-    <!--<div class="container">-->
-        <!--<h1>Bourdain?</h1>-->
-        <!--&lt;!&ndash;<p class="lead" th:text="#{index.courses.tagline}">Tag line</p>&ndash;&gt;-->
-    <!--</div>-->
-</div>
-
-<div class="container" sec:authorize="hasRole('ROLE_USER')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-            </tr>
-        </table>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+            <h2>This episode has been deleted.</h2>
+        </div>
     </div>
 </div>
-
-<div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
-    <div th:if="${not #lists.isEmpty(episodes)}">
-        <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Episode Location</th>
-                <th>Description</th>
-                <th>View</th>
-                <th>Edit</th>
-                <th>Delete</th>
-
-            </tr>
-            <tr th:each="episode : ${episodes}">
-                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
-                <td th:text="${episode.episodeName}">Episode Location</td>
-                <td th:text="${episode.episodeDesc}">Description</td>
-                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
-                <td><a th:href="${'/episode/edit/' + episode.id}">Edit</a></td>
-                <td><a th:href="${'/episode/delete/' + episode.id}"><button type="button">Delete</button></a></td>
-            </tr>
-        </table>
-
-    </div>
-</div>
-
-<div class="container" th:replace="fragments/footer :: footer">
-    <p>footer</p>
-</div>
-
 </body>
 </html>

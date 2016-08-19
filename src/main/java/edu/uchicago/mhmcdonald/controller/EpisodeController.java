@@ -116,6 +116,12 @@ public class EpisodeController {
         episodeService.delete(id);
     }
 
+//    @RequestMapping("episode/delete/{id}")
+//    public String delete(@PathVariable(value = "id") long id, Model model)
+//    {episodeService.delete(id);}
+//        return "delete-success";
+//    }
+
 }
 
 

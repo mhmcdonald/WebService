@@ -50,5 +50,12 @@ public class ApiController{
         return jsonEpisode;
     }
 
+    //delete a single episode. This will return you to the episode list home page, where the episode is now gone.
+    //enter "http://localhost:8080/api/#/delete
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable(value="id") Long id){
+        episodeService.delete(id);
+        return "Confirmation: Episode has been deleted.";
+    }
 
 }

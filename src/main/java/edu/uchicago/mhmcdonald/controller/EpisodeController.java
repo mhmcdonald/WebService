@@ -64,9 +64,7 @@ public class EpisodeController {
     public String list(Model model){
         model.addAttribute("episodes", episodeService.list());
         return "episodelist";
-//        return "index";
     }
-//im not sure how to do this using Gerber's format:
 
     @RequestMapping("episode/new")
     public String newEpisode(Model model){
@@ -74,10 +72,6 @@ public class EpisodeController {
         return "episodeform";
     }
 
-//    @RequestMapping(value = "/", method = RequestMethod.POST)
-//    public Episode create(@RequestBody Episode episode){
-//        return episodeService.create(episode);
-//    }
 
     @RequestMapping(value = "episode", method = RequestMethod.POST)
     public String saveEpisode(Episode episode){
@@ -87,11 +81,6 @@ public class EpisodeController {
         return "redirect:/episode/" + episode.getId();
     }
 
-//    @RequestMapping(value = "episode/{id}", method = RequestMethod.GET)
-//    public Episode read(@PathVariable(value = "id") long id){
-//        Episode post = episodeService.read(id);
-//        return post;
-//    }
 
     @RequestMapping("episode/{id}")
     public String showEpisode(@PathVariable Long id, Model model){
@@ -111,11 +100,6 @@ public class EpisodeController {
         return post;
     }
 
-//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-//    public void delete(@PathVariable(value = "id") long id){
-//        episodeService.delete(id);
-//    }
-
     @RequestMapping(value= "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable(value = "id") long id){
         System.out.println(id);
@@ -123,11 +107,6 @@ public class EpisodeController {
         return "redirect:/";
     }
 
-//    @RequestMapping("episode/delete/{id}")
-//    public String delete(@PathVariable(value = "id") long id, Model model)
-//    {episodeService.delete(id);}
-//        return "delete-success";
-//    }
 
 }
 

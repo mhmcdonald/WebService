@@ -11,6 +11,9 @@
 
     <link th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
 
+    <link href="../static/css/datatables.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/datatables.min.css}"/>
+
 
     <style th:remove="all">
         .jumbotron {
@@ -149,12 +152,14 @@
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
+                <th>Season</th>
                 <th>Episode Location</th>
                 <th>Description</th>
                 <th>View</th>
             </tr>
             <tr th:each="episode : ${episodes}">
                 <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
+                <td th:text="${episode.season.seasonName}">Season</td>
                 <td th:text="${episode.episodeName}">Episode Location</td>
                 <td th:text="${episode.episodeDesc}">Description</td>
                 <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
@@ -167,28 +172,47 @@
 <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
     <div th:if="${not #lists.isEmpty(episodes)}">
         <h2>Episode List</h2>
-        <table class="table table-striped">
-            <tr>
+        <table class="table table-striped table-bordered" id="datatable">
+            <thread>
+                <tr>
                 <th>ID</th>
+                <th>Season</th>
                 <th>Episode Location</th>
                 <th>Description</th>
                 <th>View</th>
                 <th>Edit</th>
                 <th>Delete</th>
-
-            </tr>
+                </tr>
+            </thread>
+            <tbody>
             <tr th:each="episode : ${episodes}">
                 <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
+                <td th:text="${episode.season.seasonName}">Season</td>
                 <td th:text="${episode.episodeName}">Episode Location</td>
                 <td th:text="${episode.episodeDesc}">Description</td>
                 <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
                 <td><a th:href="${'/episode/edit/' + episode.id}">Edit</a></td>
-                <td><a th:href="${'/episode/delete/' + episode.id}"><button type="button">Delete</button></a></td>
+                <!--<td><a th:href="${'/episode/delete/' + episode.id}"><button type="button">Delete</button></a></td>-->
+                <td><form action="#" th:action="@{'/delete/{id}'(id=${episode.id})}" th:method="delete" >
+                        <input type="hidden" name="delete" value="delete" />
+                        <button type="submit" id="submitButton">Delete</button>
+                </form>  </td>
             </tr>
+            </tbody>
         </table>
 
     </div>
 </div>
+
+<!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />-->
+<!--<link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>-->
+
+<script>
+        $('#datatable').dataTable();
+</script>
 
 <div class="container" th:replace="fragments/footer :: footer">
     <p>footer</p>

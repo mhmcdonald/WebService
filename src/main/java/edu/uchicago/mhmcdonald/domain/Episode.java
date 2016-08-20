@@ -1,34 +1,45 @@
 package edu.uchicago.mhmcdonald.domain;
 
 import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by markmcdonald on 8/17/16.
  */
+
+//this is my Episode class. It defines the granular level of detail that makes up the tv show's episode objects
 @Entity
 public class Episode {
     @Id
     @GeneratedValue
     private Long id;
+    //long id is simply a system generated value. It acts as the H2's primary key so no duplicates are allowed
 
     private Integer episodeNum;
+    //this is the episode number within a season
 
     private String episodeName;
+    //episode name corresponds with a particular location where the show is set
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    //this is not very useful, but I used it because Prof Gerber used it in his example. Could be removed.
 
     @Column(columnDefinition = "TEXT")
     private String episodeDesc;
+    //The show description is a few sentences of text describing what happens in the episode.
 
     @ManyToOne
     private Season season;
+    //there is a many to one relationship between episodes and seasons (apprx 10 episodes per a given season)
 
     private String imgurl;
+    //included a screen snippet of each episode to be viewed on the detail page of the site
 
+    //this is the constructor method with the args
     public Episode(String episodeDesc, Season season, String imgurl, Integer episodeNum, String episodeName) {
         this.episodeDesc = episodeDesc;
         this.season = season;
@@ -38,10 +49,12 @@ public class Episode {
         this.createTime = new Date();
     }
 
-    public Episode(){
+    //no arg constructor
+    public Episode() {
 
     }
 
+    //various getter and setter methods
     public Long getId() {
         return id;
     }
@@ -69,7 +82,6 @@ public class Episode {
     public Date getCreateTime() {
         return createTime;
     }
-
 
     public String getEpisodeDesc() {
         return episodeDesc;

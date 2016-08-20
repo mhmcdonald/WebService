@@ -7,25 +7,33 @@ import javax.persistence.Id;
 /**
  * Created by markmcdonald on 8/17/16.
  */
+
+/*this class describes the seasons. At latest development date there were 7 seasons of Parts Unkown Available
+ this could have just as easily been included as an attribute of episode, but Prof Gerber required a one to
+many relationship in the H2 tables */
 @Entity
 public class Season {
 
     @Id
     @GeneratedValue
     private Long id;
-
+    //primary key, system generated
     private Integer seasonNum;
-
+    //simple season indicator, ie "1"
     private String seasonName;
+    //written out, as "Season 1"
 
+    //season object constructor
     public Season(Integer seasonNum, String seasonName){
         this.seasonNum = seasonNum;
         this.seasonName = seasonName;
     }
 
+    //no arg constructor
     public Season(){
     }
 
+    //various getter and setter methods
     public Long getId() {
         return id;
     }

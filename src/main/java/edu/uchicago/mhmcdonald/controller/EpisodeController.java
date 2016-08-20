@@ -111,9 +111,16 @@ public class EpisodeController {
         return post;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id") long id){
+//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//    public void delete(@PathVariable(value = "id") long id){
+//        episodeService.delete(id);
+//    }
+
+    @RequestMapping(value= "/delete/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable(value = "id") long id){
+        System.out.println(id);
         episodeService.delete(id);
+        return "redirect:/";
     }
 
 //    @RequestMapping("episode/delete/{id}")

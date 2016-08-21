@@ -146,6 +146,29 @@
     <!--</div>-->
 </div>
 
+<div class="container" sec:authorize="!isAuthenticated()">
+    <div th:if="${not #lists.isEmpty(episodes)}">
+        <h2>Episode List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Season</th>
+                <th>Episode Location</th>
+                <th>Description</th>
+                <th>View</th>
+            </tr>
+            <tr th:each="episode : ${episodes}">
+                <td th:text="${episode.id}"><a href="/episode/${episode.id}">ID</a></td>
+                <td th:text="${episode.season.seasonName}">Season</td>
+                <td th:text="${episode.episodeName}">Episode Location</td>
+                <td th:text="${episode.episodeDesc}">Description</td>
+                <td><a th:href="${ '/episode/' + episode.id}">View</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
 <div class="container" sec:authorize="hasRole('ROLE_USER')">
     <div th:if="${not #lists.isEmpty(episodes)}">
         <h2>Episode List</h2>

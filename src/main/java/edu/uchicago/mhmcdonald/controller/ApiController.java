@@ -64,16 +64,17 @@ public class ApiController{
 
         Episode episode = episodeService.getEpisodeById(id);
         if (id == null) {
-            System.out.println("Unable to delete. User with id " + id + " not found");
+            System.out.println("Unable to delete. Episode with id " + id + " not found");
             return new ResponseEntity<Episode>(HttpStatus.NOT_FOUND);
         }
 
         episodeService.delete(id);
+        System.out.println("Confirmation: Episode has been deleted.");
         return new ResponseEntity<Episode>(HttpStatus.NO_CONTENT);
     }
 
 
-    //to create a new Episode (use PostMan to test)
+    //NOTE TO GRADER: To create a new Episode use PostMan to test
     @RequestMapping(value = "/create/", method = RequestMethod.POST)
     public ResponseEntity<Void> createEpisode(@RequestBody Episode episode,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Episode " + episode.getEpisodeName());
@@ -91,7 +92,7 @@ public class ApiController{
     }
 
 
-    //to update exiting episode (use PostMan to test)
+    //NOTE TO GRADER: to update exiting episode use PostMan to test
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Episode> updateEpisode(@PathVariable("id") long id, @RequestBody Episode episode) {
         System.out.println("Updating User " + id);

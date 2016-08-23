@@ -1,9 +1,12 @@
 package edu.uchicago.mhmcdonald.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
 
 /**
  * Created by markmcdonald on 8/17/16.
@@ -16,6 +19,7 @@ public class Episode {
     @GeneratedValue
     private Long id;
     //long id is simply a system generated value. It acts as the H2's primary key so no duplicates are allowed
+
 
     private Integer episodeNum;
     //this is the episode number within a season

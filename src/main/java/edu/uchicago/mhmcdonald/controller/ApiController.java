@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
+import edu.uchicago.mhmcdonald.exception.ResourceNotFoundException;
 
 
 @RestController
@@ -36,7 +37,7 @@ public class ApiController{
         ArrayList<Episode> episodeList = new ArrayList<Episode>();
         Iterable<Episode> iterable;
         if(episodeService.list() == null){
-            return new ResponseEntity<ArrayList<Episode>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            throw new ResourceNotFoundException("There were no episodes found. Please contact the API administrator.");
         }
         iterable = episodeService.list();
         for(Episode episode : iterable){
@@ -52,7 +53,7 @@ public class ApiController{
         episode = episodeService.getEpisodeById(id);
         if (episode == null) {
             System.out.println("Episode with id " + id + " not found");
-            return new ResponseEntity<Episode>(HttpStatus.NOT_FOUND);
+            throw new ResourceNotFoundException("Episode with id " + id + " not found");
         }
         return new ResponseEntity<Episode>(episode, HttpStatus.OK);
     }
@@ -65,7 +66,7 @@ public class ApiController{
         Episode episode = episodeService.getEpisodeById(id);
         if (id == null) {
             System.out.println("Unable to delete. Episode with id " + id + " not found");
-            return new ResponseEntity<Episode>(HttpStatus.NOT_FOUND);
+            throw new ResourceNotFoundException("Episode with id " + id + " not found");
         }
 
         episodeService.delete(id);
@@ -79,16 +80,11 @@ public class ApiController{
     public ResponseEntity<Void> createEpisode(@RequestBody Episode episode,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Episode " + episode.getEpisodeName());
 
-//        if (episodeService.isUserExist(user)) {
-//            System.out.println("A User with name " + user.getName() + " already exist");
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        }
-
         episodeService.saveEpisode(episode);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/create/{id}").buildAndExpand(episode.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(null, headers, HttpStatus.CREATED);
     }
 
 

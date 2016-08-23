@@ -13,42 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by markmcdonald on 8/17/16.
  */
-//@Controller
-//public class EpisodeController {
-//
-//    private EpisodeService episodeService;
-//
-//    @Autowired
-//    public EpisodeController(EpisodeService episodeService){
-//        this.episodeService = episodeService;
-//    }
-//
-//
-////    @RequestMapping("/episode")
-////    public String getEpisode(){
-////        return "redirect:/index";
-////    }
-//
-//    @RequestMapping("/episode/{id}")
-//    public String getEpisodebyId(@PathVariable Long id, Model model){
-//
-//        model.addAttribute("episode", episodeService.read(id));
-//
-//        return "episode";
-//    }
-//}
-//
-////    public String getEpisode() {
-////        return "redirect:/index";
-////    }
-////
-////    @RequestMapping("/episode/{id}")
-////    public String getEpisodeById(@PathVariable Long id, Model model) {
-////
-////        model.addAttribute("episode", episodeService.read(id));
-////
-////        return "episode";
-////    }
 
 @Controller
 public class EpisodeController {

@@ -40,7 +40,7 @@ public class ProWebserviceApplication implements CommandLineRunner {
 
 
         seasonRepository.save(Arrays.asList(seasons));
-        //this data was retrieved from the guidebox.com API
+        //this data was retrieved from the guidebox.com API. It adds these records to the H2 Database
         Episode[] episodes = new Episode[56];
         episodes[0] = new Episode("Bourdain looks at the Congo as one of the more industrialized powers in Africa now largely crumbled to nothingness and chaos with Tim Butcher author of Blood River.", seasons[0], "http://static-api.guidebox.com/new_thumbs/thumbnails_episodes/15696-8-1-1370761200-1054908778-large-400x225.jpg", 8, "Congo");
         episodes[1] = new Episode("Few cities have experienced such a dramatic economic rise and fall of Detroit. In this episode of Parts Unknown, Bourdain explores the past, present and future of the Motor City. He steps into the lives of Detroit natives and sees the glory days of the past at the famed Packard Plant, the current state of the city's urban decay, and the promise of the future in the citizens who are rebuilding their communities.", seasons[1], "http://static-api.guidebox.com/new_thumbs/thumbnails_episodes/15696-8-2-1384070400-9384480598-large-400x225.jpg", 8, "Detroit");

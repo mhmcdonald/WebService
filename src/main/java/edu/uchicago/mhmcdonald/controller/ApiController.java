@@ -84,14 +84,14 @@ public class ApiController{
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/create/{id}").buildAndExpand(episode.getId()).toUri());
-        return new ResponseEntity<>(null, headers, HttpStatus.CREATED);
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
 
     //NOTE TO GRADER: to update exiting episode use PostMan to test
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Episode> updateEpisode(@PathVariable("id") long id, @RequestBody Episode episode) {
-        System.out.println("Updating User " + id);
+        System.out.println("Updating Episode " + id);
 
         Episode currentEpisode = episodeService.getEpisodeById(id);
 

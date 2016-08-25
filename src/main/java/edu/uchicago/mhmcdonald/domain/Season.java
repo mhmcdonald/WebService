@@ -7,7 +7,7 @@ import javax.persistence.Id;
 /**
  * Created by markmcdonald on 8/17/16.
  * This class defines Season. I could have included Season as a variable of Episode, but this project required a
- * one to many relationship in the H2 database.
+ * one to many re
  */
 
 /*this class describes the seasons. At latest development date there were 7 seasons of Parts Unkown Available

@@ -3,8 +3,6 @@ package edu.uchicago.mhmcdonald.service;
 import edu.uchicago.mhmcdonald.domain.Episode;
 
 
-import java.util.Iterator;
-
 /**
  * Created by markmcdonald on 8/17/16.
  * EpisodeService interface defines the CRUD methods

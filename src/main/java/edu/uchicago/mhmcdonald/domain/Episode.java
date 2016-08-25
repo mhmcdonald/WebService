@@ -18,9 +18,11 @@ public class Episode {
     @GeneratedValue
     private Long id;
     //long id is simply a system generated value. It acts as the H2's primary key so no duplicates are allowed
+
     @Min(1)
     private Integer episodeNum;
     //this is the episode number within a season
+    @NotEmpty
     private String episodeName;
     //episode name corresponds with a particular location where the show is set
 
@@ -28,7 +30,7 @@ public class Episode {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     //this is not very useful, but I used it because Prof Gerber used it in his example. Could be removed.
-
+    @NotEmpty
     @Column(columnDefinition = "TEXT")
     private String episodeDesc;
     //The show description is a few sentences of text describing what happens in the episode.
@@ -36,7 +38,7 @@ public class Episode {
     @ManyToOne
     private Season season;
     //there is a many to one relationship between episodes and seasons (apprx 10 episodes per a given season)
-
+    @NotEmpty
     private String imgurl;
     //included a screen snippet of each episode to be viewed on the detail page of the site
 

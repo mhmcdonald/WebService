@@ -150,36 +150,38 @@
 
     <h2>New Episode Details</h2>
     <div>
+
+
         <form class="form-horizontal" th:object="${episode}" th:action="@{/episode}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Season:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{season}"/>
+                    <input type="number" min="1" max="7" required="true" class="form-control" th:field="*{season.seasonNum}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Episode Number:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{episodeNum}"/>
+                    <input type="number" min="1" max="20" required="true" class="form-control" th:field="*{episodeNum}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Episode Location:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{episodeName}"/>
+                    <input type="text" required="true" class="form-control" th:field="*{episodeName}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Description:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{episodeDesc}"/>
+                    <input type="text" required="true" class="form-control" th:field="*{episodeDesc}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Image Url:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{imgurl}"/>
+                    <input type="text" required="true" class="form-control" th:field="*{imgurl}"/>
                 </div>
             </div>
             <div class="row">
@@ -192,6 +194,7 @@
 <div class="container" th:replace="fragments/footer :: footer">
     <p>footer</p>
 </div>
+
 
 </body>
 </html>

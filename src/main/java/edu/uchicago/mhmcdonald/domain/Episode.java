@@ -2,9 +2,9 @@ package edu.uchicago.mhmcdonald.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
-import javax.validation.constraints.Min;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 /**

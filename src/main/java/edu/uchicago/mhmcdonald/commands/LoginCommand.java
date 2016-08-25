@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Created by markmcdonald on 8/18/16.
+ * This command is necessary for the login form authentication
  */
 public class LoginCommand {
     @NotEmpty

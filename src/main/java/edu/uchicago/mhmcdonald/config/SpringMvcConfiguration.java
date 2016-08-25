@@ -12,6 +12,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 /**
  * Created by markmcdonald on 8/18/16.
+ * This is the Spring Model View Controller
  */
 @Configuration
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {

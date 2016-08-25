@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by markmcdonald on 8/17/16.
+ * This class implements the EpisodeService Interface
  */
 @Service
 public class EpisodeServiceImpl implements EpisodeService {

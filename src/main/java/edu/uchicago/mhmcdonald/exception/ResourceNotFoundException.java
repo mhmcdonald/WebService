@@ -2,6 +2,7 @@ package edu.uchicago.mhmcdonald.exception;
 
 /**
  * Created by markmcdonald on 8/23/16.
+ * This is the Response Class for web Resources
  */
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

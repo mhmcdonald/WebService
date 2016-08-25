@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 /**
  * Created by markmcdonald on 8/17/16.
+ * EpisodeService interface defines the CRUD methods
  */
 public interface EpisodeService {
     Iterable<Episode> list();

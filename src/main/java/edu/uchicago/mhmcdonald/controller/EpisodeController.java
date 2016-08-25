@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 /**
  * Created by markmcdonald on 8/17/16.
+ * This is the UI Controller
  */
 
 @Controller
@@ -60,8 +62,7 @@ public class EpisodeController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Episode update(@PathVariable(value = "id") long id, @RequestBody Episode episode){
-        Episode post = episodeService.update(id,episode);
-        return post;
+        return episodeService.update(id,episode);
     }
 
     @RequestMapping(value= "/delete/{id}", method = RequestMethod.DELETE)

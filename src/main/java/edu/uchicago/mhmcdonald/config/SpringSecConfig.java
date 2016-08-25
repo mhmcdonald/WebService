@@ -9,6 +9,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Created by markmcdonald on 8/18/16.
+ * This defines the Spring Security. As it stands there is not any reason to login as a User.
+ * However, admin has CRUD capabilities.
  */
 
 @Configuration

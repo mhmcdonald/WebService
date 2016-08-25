@@ -2,14 +2,12 @@ package edu.uchicago.mhmcdonald.handler;
 
 /**
  * Created by markmcdonald on 8/23/16.
+ * This is the REST API exception handler
  */
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import edu.uchicago.mhmcdonald.error.ErrorDetail;
+import edu.uchicago.mhmcdonald.error.ValidationError;
+import edu.uchicago.mhmcdonald.exception.ResourceNotFoundException;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,9 +20,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import edu.uchicago.mhmcdonald.error.ErrorDetail;
-import edu.uchicago.mhmcdonald.error.ValidationError;
-import edu.uchicago.mhmcdonald.exception.ResourceNotFoundException;
+import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler  {
@@ -33,7 +33,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler  {
     private MessageSource messageSource;
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe, HttpServletRequest request) {
+    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe) {
 
         ErrorDetail errorDetail = new ErrorDetail();
         errorDetail.setTimeStamp(new Date().getTime());
@@ -43,6 +43,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler  {
         errorDetail.setDeveloperMessage(rnfe.getClass().getName());
 
         return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<?> handleResourceBadData(ResourceNotFoundException rnfe) {
+
+        ErrorDetail errorDetail = new ErrorDetail();
+        errorDetail.setTimeStamp(new Date().getTime());
+        errorDetail.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+        errorDetail.setTitle("Data Validation Issue");
+        errorDetail.setDetail(rnfe.getMessage());
+        errorDetail.setDeveloperMessage(rnfe.getClass().getName());
+
+        return new ResponseEntity<>(errorDetail, null, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @Override

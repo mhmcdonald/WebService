@@ -2,6 +2,7 @@ package edu.uchicago.mhmcdonald.error;
 
 /**
  * Created by markmcdonald on 8/23/16.
+ * Validation Error Message Class
  */
 
 public class ValidationError {
